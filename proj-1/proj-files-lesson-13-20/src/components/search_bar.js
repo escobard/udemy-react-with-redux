@@ -55,8 +55,9 @@ class SearchBar extends Component{
 		// this assigns the property term to state, creating the object chain: state.term
 		// in short, this stores the value of the SearchBar input, into the empty string ('' of the term property)
 		// which can be sent to other parts of our app
-		// this is the only place in our application where we can change the state of the class from the parent function
-		this.state = { term: ''};
+		// this is the only place in our application where we can manually change the state of the class from the parent function
+		// anything within the term property value, will appear as the render.input.value initially
+		this.state = { term: 'Starting value'};
 	}
 
 	// each component child of React.Component must include a render function, seen below
@@ -76,9 +77,16 @@ class SearchBar extends Component{
 		// setState() is nattive to React, setting the state of the class to the argument's value
 		// the object within setState({}) contains the with the property 'term' created in the constructor function of the class
 		// the value of 'term' is determined by the event.target.value, binding the 'value' call back to this input's current value
+		// this.setState is the only PROPER way to call a component's state
+		// the value property of this input will be updated with the this.state.term callback, which calls the value of the state
+		// the value of the input is a controlled form element, which is controlled by the state of the class
+		// since the value is changed, and on the inputs change the class is re-rendered, each time the value changes on the input
+		// this updates input's actual value accordingly
 		return (
 			<div>
-			<input onChange={event => this.setState({ term: event.target.value})} />
+			<input 
+			value={this.state.term}
+			onChange={event => this.setState({ term: event.target.value})} />
 			<p>Value of the input: <span>{this.state.term}</span></p>
 			</div>
 			);
