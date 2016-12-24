@@ -14,6 +14,7 @@
 // code that is declared in other files that we produce will have 0 contact with other files unless
 // they are specifically declared to do so
 // using modules allows you to call upon variables / objects from other JS files, and imports them into your library
+// this generates an error because another dependency is still missing
 
 import React from 'react';
 
@@ -26,6 +27,11 @@ import React from 'react';
 // ON COMPILER:
 // 
 // When compiler is ran, the babel library makes sure this file has the 'react' library listed as a dependency after import
+// 
+// ON REACT COMPILING TO DOM:
+// Needs another dependency, called react-dom, which is what actually renders the compiled code into the DOM for the user to see
+
+import ReactDOM from 'react-dom';
 /*========================================================*/
 
 
@@ -37,13 +43,14 @@ const App = function (){
 	// JSX allows us to write what looks like HTML but is really just javascript behind the scenes
 	// JSX can be viewed after transpile from original js here : https://babeljs.io/
 	// this is transpired by babel and webpack that polyfills / compiles code before it hits the browser
-	return <div>Hi!<//div>;
+	return <div>Hi!</div>;
 };
 
 
-/* take this component's HTML and put it on the page (in the DOM)
+//* take this component's HTML and put it on the page (in the DOM)
 // this will generate an error, because React is undefined
 // But the function is basically asking React to .render the const App
 //
 */
-React.render(App);
+// ReactDOM is accesed here instead, to actually pass the const App into the ReactDOM.render argument, to pass the const App into the DOM
+ReactDOM.render(App);
