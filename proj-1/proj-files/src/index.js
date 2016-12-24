@@ -9,7 +9,8 @@
 // 
 const App = function (){
 	// JSX allows us to write what looks like HTML but is really just javascript behind the scenes
-	// this is transpired by bable that polyfills / compiles code before it hits the browser
+	// JSX can be viewed after transpile from original js here : https://babeljs.io/
+	// this is transpired by babel and webpack that polyfills / compiles code before it hits the browser
 	return <div>Hi!</div>;
 };
 
