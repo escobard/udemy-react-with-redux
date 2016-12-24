@@ -41,7 +41,11 @@ import ReactDOM from 'react-dom';
 // the code here is a type of component that is a class, not an instance 
 // in other words this is a factory that produces components, that get rendered to the DOM
 
-const App = function (){
+/*
+
+This was the old function, using JS ES5 code
+
+ */const App = function (){
 	// 
 	// this gets instanced into :
 	// App = function App(){
@@ -59,12 +63,19 @@ const App = function (){
 	// when you write an HTML element, this is compiled / rendered into : React.createElement('div', null)
 	// This is considered a component 'class' until it gets rended into the DOM, where it becomes a component 'instance'
 	return <div>Hi!</div>;
-};
+}; */
+
+// this creates  the same const function as above 
+// which changes the functionality of the .this method which will be reviewed later
+// will be seen all over the place on react applications, but is identical to the function objects
+
+const App = () => {
+	return <div>Hi!</div>;
+}; */
 
 // the following creates an 'instance' of a 'class', the 'class' being the factory (in this case the const App) the 'instance' being
 // the DOM components that are rendered by React.createElement();
-
-<App></App>
+// <App></App>
 
 // the above can also be written with <App /> which is valid self closing JSX
 
@@ -77,4 +88,8 @@ const App = function (){
 // The problem before was that we were passing a component 'class' into the .render(argument) instead of an 'instance'.
 // this was the code previously :  ReactDOM.render(App);
 // this creates an 'instance' of the const App (or component class App) and passes it to ReactDOM to .render();
-ReactDOM.render(<App />);
+// this creates an error, target container is not a DOM element, because ReactDOM does not know where to render : ReactDOM.render(<App />);
+// ReactDOM takes a second argument, which points to an exsisting DOM element on a page
+var Container = document.querySelector('.container');
+
+ReactDOM.render(<App />, Container);
