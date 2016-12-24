@@ -40,11 +40,43 @@ class SearchBar extends Component{
 	// each component child of React.Component must include a render function, seen below
 	// this is the syntax we use to define methods of a class in JSX
 	// render() must return some JSX or we end up with an error
+	// this input has the onChange react event handler, which triggers the 'onInputChange' function 
+	// found within this class
 	render() {
 		
-		return <input />;
+		return <input onChange={this.onInputChange} />;
 
 	}
+
+	// the following creates a function to handle the event of an event that happens within React
+	// commonly called an 'Event Handler'
+	// The syntax below and above is how to return function statements within classes in ES6
+	// the function name here is optional for this specific event handler
+	// any JS event always has a standard object attached to it, which can be caleld to in the event argument
+	// in this case, we have called it 'event'
+	onInputChange(event) {
+
+		// to get access of the object that triggers the event, one can use event.target
+		// example below:
+		
+		console.log(event.target.value);
+		//
+		// this will update the console log with the values of the SearchBar.render().input.value
+		//
+		// 
+	}
+	// this can be used as well to handle events, but is not as scalable or organized as the function above
+	// render (){
+	// 	return <input onChange={(event) => console.log(event.target.value)} />;
+	//  
+	//  can be further shortened with:
+	//  
+	//  return <input onChange={event => console.log(event.target.value)} />; 	
+	//
+	// }
+	// 
+	// this eliminates the need to create the onInputChange function scope entirely
+
 
 };
 //
