@@ -36,10 +36,12 @@ const App = () => {
 const App = () => {
 	
 	//returns our app container div
+	// returns our search bar component input, as <SearchBar />
 	return <div>
 		
-		// returns our serch bar component
+		
 		<SearchBar />
+
 	</div>
 }
 
