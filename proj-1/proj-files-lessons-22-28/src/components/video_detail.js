@@ -10,6 +10,16 @@ import React from 'react';
 // videodetail component
 const VideoDetail = ({video}) => {
 
+	// since App is fetching the video files as its already rendering, we need to tell the browser to render
+	// something else until the 'videos' state array has been populated
+	if (!video) {
+		return (
+
+			<div>Loading...</div>
+
+		);
+	}
+
 	// to make sure the iframe is created with unique videos per video detail component, two consts will have to be made
 	const videoId = video.id.videoId;
 

@@ -19,6 +19,7 @@ import YTSearch from 'youtube-api-search';
 // for local components, can drop the .js at the end as its not required pre-compile
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 // this is the youtube API key to access video data
 const API_KEY = 'AIzaSyADgejrRxwevOdD8LPoBTpFjIzOQ0mKlVw';
@@ -89,6 +90,7 @@ class App extends Component {
 		return( 
 			<div>
 				<SearchBar/>
+				<VideoDetail video={this.state.videos[0]}/>
 				<VideoList videos={this.state.videos}/>
 			</div>
 		);
