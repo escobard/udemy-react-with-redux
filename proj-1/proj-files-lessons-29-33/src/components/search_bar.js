@@ -57,7 +57,7 @@ class SearchBar extends Component{
 		// which can be sent to other parts of our app
 		// this is the only place in our application where we can manually change the state of the class from the parent function
 		// anything within the term property value, will appear as the render.input.value initially
-		this.state = { term: 'Starting value'};
+		this.state = { term: 'Search a video...'};
 	}
 
 	// each component child of React.Component must include a render function, seen below
@@ -84,11 +84,10 @@ class SearchBar extends Component{
 		// this updates input's actual value accordingly
 		return (
 			<div className="search-bar">
-			<h4>Search Bar</h4>
 			<input 
 			value={this.state.term}
-			onChange={event => this.setState({ term: event.target.value})} />
-			<p>Value of the input: <span>{this.state.term}</span></p>
+			onChange={event => this.onInputChange(event.target.value)} />
+			<p>Searching for : <span>{this.state.term}</span></p>
 			</div>
 			);
 		// 
@@ -109,12 +108,21 @@ class SearchBar extends Component{
 	// the function name here is optional for this specific event handler
 	// any JS event always has a standard object attached to it, which can be caleld to in the event argument
 	// in this case, we have called it 'event'
-	onInputChange(event) {
+	// 
+	// this is called when the user inputs values into the search bar
+	// 
+	onInputChange(term) {
+
+		//changes the state of term when the search bar input changess
+		this.setState({term});
+
+		// changes the argument value of onSearchTermChange
+		this.props.onSearchTermChange(term);
 
 		// to get access of the object that triggers the event, one can use event.target
 		// example below:
 		
-		console.log(event.target.value);
+		console.log(term.target.value);
 		//
 		// this will update the console log with the values of the SearchBar.render().input.value
 		//

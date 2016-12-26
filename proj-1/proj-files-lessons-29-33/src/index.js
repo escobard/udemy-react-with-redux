@@ -63,35 +63,44 @@ class App extends Component {
 			
 		};
 		
-		// refactored into the class' constructor file to keep track of search data
-		YTSearch({key: API_KEY, term: 'surfboards'}
-			, (videoData) => {
+		// this sets the starting search term to be the string 'surfboards'
+		this.videoSearch('surfboards');
 
-				// sets the state array to contain the video data
-				// for this excersise ONLY, will not use moving forward, as it can confuse other developers
-				// this is the proper way to set the state to the videos argument, but if the object key + property have 
-				// the same variable name it can be merged into 1 for convinience in ES6
-				// Not my favorite feature, but videos can be combined into:
-				// YTSearch({key: API_KEY, term: 'surfboards'}
-				//, (videos) => {
-				// this.setState({videos});
-				// and it would work the same as the below statement
-				this.setState({ 
+	};
 
-					// sets the state of the videos array
-					videos: videoData,
+	// creates the callback for videoSearch function, which will updates our search term
+	videoSearch(term) {
 
-					// sets the state of the selectVideo array
-					// plays the first videos that is loaded into the videos array via videoData
-					selectedVideo: videoData[0]
-				});
+				// refactored into the class' constructor file to keep track of search data
+			YTSearch({key: API_KEY, term: term}
+				, (videoData) => {
 
-				// logs the response data
-				console.log(videoData);
-			}
-		);
+					// sets the state array to contain the video data
+					// for this excersise ONLY, will not use moving forward, as it can confuse other developers
+					// this is the proper way to set the state to the videos argument, but if the object key + property have 
+					// the same variable name it can be merged into 1 for convinience in ES6
+					// Not my favorite feature, but videos can be combined into:
+					// YTSearch({key: API_KEY, term: 'surfboards'}
+					//, (videos) => {
+					// this.setState({videos});
+					// and it would work the same as the below statement
+					this.setState({ 
 
-	}
+						// sets the state of the videos array
+						videos: videoData,
+
+						// sets the state of the selectVideo array
+						// plays the first videos that is loaded into the videos array via videoData
+						selectedVideo: videoData[0]
+					});
+
+					// logs the response data
+					console.log(videoData);
+				}
+			);
+
+	};
+
 	
 	// renders SearchBar and VideoList
 	// passing data from the parent component to the child is referred to as a prop in React
@@ -101,10 +110,13 @@ class App extends Component {
 	// onVideoSelect = just updates App.state. it takes the 'video' from the clicked VideoList item, and updates
 	// the 'selectedVideo' state (which disaplays the video in an iframe, with info) with the clicked 'video'
 	// this was passed as a property (onVideoSelect) into Video List
+	// 
+	// onSearchTermChange = a function that sets the state of term, which updates the videoSearch function with the correct search value
+	// 
 	render() {
 		return( 
 			<div>
-				<SearchBar/>
+				<SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
 				<VideoDetail video={this.state.selectedVideo}/>
 				<VideoList 
 					onVideoSelect={selectedVideo => this.setState({selectedVideo})}
