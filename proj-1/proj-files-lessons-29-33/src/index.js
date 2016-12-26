@@ -15,6 +15,9 @@ import ReactDOM from 'react-dom';
 // imports youtube search package
 import YTSearch from 'youtube-api-search';
 
+// imports lodash plugin
+import _ from 'lodash';
+
 // imports local components
 // for local components, can drop the .js at the end as its not required pre-compile
 import SearchBar from './components/search_bar';
@@ -114,9 +117,16 @@ class App extends Component {
 	// onSearchTermChange = a function that sets the state of term, which updates the videoSearch function with the correct search value
 	// 
 	render() {
+		// adds the version of the video search, to delay render by half a second per render update
+		const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+		// debounce = calls a function that accepts two arguments,
+		// a callback function argument, which is delayed by the amount of time set by the second argument
+		// this creates a version of videoSearch, only within this  render scope, which is delayed by 300 before
+		// firing the videoSearch function within App
+
 		return( 
 			<div>
-				<SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+				<SearchBar onSearchTermChange={videoSearch}/>
 				<VideoDetail video={this.state.selectedVideo}/>
 				<VideoList 
 					onVideoSelect={selectedVideo => this.setState({selectedVideo})}
