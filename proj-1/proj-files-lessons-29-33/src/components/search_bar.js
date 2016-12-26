@@ -83,7 +83,7 @@ class SearchBar extends Component{
 		// since the value is changed, and on the inputs change the class is re-rendered, each time the value changes on the input
 		// this updates input's actual value accordingly
 		return (
-			<div>
+			<div className="search-bar">
 			<h4>Search Bar</h4>
 			<input 
 			value={this.state.term}

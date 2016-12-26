@@ -42,7 +42,7 @@ const VideoListItem = ({video, onVideoSelect}) => {
 	// more info on boostrap column classes = https://getbootstrap.com/examples/grid/
 	// 
 	// make an event for the list so that whenever a user clicks on that specific video listed item, it runs the onVideoSelect function, 
-	// loading the proper video data for the clicked on item into App.state.selectedVideo state from the main app
+	// loading the proper video data for the clicked on item into App.state.selectedVideo from the main app
 	// 
 	// 
 	// 
