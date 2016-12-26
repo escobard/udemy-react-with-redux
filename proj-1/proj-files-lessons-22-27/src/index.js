@@ -1,6 +1,6 @@
 // =============================================================
 // 
-// 	Index.js
+// 	index.js
 // 
 // Review notes of proj-1-files-lesson-1-20 for commentary prior to this point
 //
@@ -15,8 +15,10 @@ import ReactDOM from 'react-dom';
 // imports youtube search package
 import YTSearch from 'youtube-api-search';
 
-// imports SearchBar
-import SearchBar from './components/search_bar.js'
+// imports local components
+// for local components, can drop the .js at the end as its not required pre-compile
+import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 
 // this is the youtube API key to access video data
 const API_KEY = 'AIzaSyADgejrRxwevOdD8LPoBTpFjIzOQ0mKlVw';
@@ -78,11 +80,16 @@ class App extends Component {
 		);
 
 	}
-
+	
+	// renders SearchBar and VideoList
+	// passing data from the parent component to the child is referred to as a prop in React
+	// this passes the prop to child javascript component where it can make use of this data
+	// This is done in the VideoList render below
 	render() {
 		return( 
 			<div>
 				<SearchBar/>
+				<VideoList videos={this.state.videos}/>
 			</div>
 		);
 	}

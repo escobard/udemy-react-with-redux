@@ -84,6 +84,7 @@ class SearchBar extends Component{
 		// this updates input's actual value accordingly
 		return (
 			<div>
+			<h4>Search Bar</h4>
 			<input 
 			value={this.state.term}
 			onChange={event => this.setState({ term: event.target.value})} />
