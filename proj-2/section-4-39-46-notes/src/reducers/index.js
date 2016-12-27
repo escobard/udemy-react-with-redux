@@ -19,6 +19,8 @@ import booksReducer from './reducer_books'
 const rootReducer = combineReducers({
 
 	// this assigns the book key to our bookReducer function
+	// where book is the key of the data state
+	// and booksReducer is the value of that data state
 	books: booksReducer;
 
 });
