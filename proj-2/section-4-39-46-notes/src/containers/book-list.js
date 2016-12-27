@@ -13,13 +13,11 @@ import React, { Component } from 'react';
 // imports the connect function
 import { connect } from 'react-redux';
 
-
-// THESE CLASSES MUST HAVE A CAPITAL AT THE BEGINNING OR THE CLASS WILL NOT WORK
-class BookList extends Component {
+class bookList extends Component {
 
 	// this will set up the function to render our list
 	// we will be adding the list of books to our props object later
-	renderList() {
+	renderList(){
 
 		// creates the map of the books array, setting up an object for each index and calling it 'book'
 		return this.props.books.map((book) => {
@@ -33,19 +31,15 @@ class BookList extends Component {
 				</li>
 			);
 		});
-	}
+	};
 
 
 	// this sets up the component for our booklist's HTML
-	render() {
-
-		//DONT FORGET TO RETURN HERE, JUST SPENT AN HOUR DEBUGGING THIS AREA
-		return (
-			<ul className="list-group col-sm-4">
-				{this.renderList()}
-			</ul>
-		);
-	}
+	render(){
+		<ul className="list-group col-sm-4">
+			{this.renderList()}
+		</ul>
+	};
 
 };
 
@@ -72,4 +66,4 @@ function mapStateToProps(state) {
 // this connects the two functions in this container together when exported
 // connect takes a function, and a component (class only), and produces a container
 // a container is again a component that connects react with the redux state
-export default connect(mapStateToProps) (BookList);
+export default connect(mapStateToProps)(bookList);

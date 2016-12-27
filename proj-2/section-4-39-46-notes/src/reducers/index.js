@@ -13,7 +13,7 @@
 import { combineReducers } from 'redux';
 
 // imports the data from reducer_books.js
-import booksReducer from './reducer_books'
+import BooksReducer from './reducer_books';
 
 // this function below is what maps our state reducers, joining all of them together for react to use
 const rootReducer = combineReducers({
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 	// this assigns the book key to our bookReducer function
 	// where book is the key of the data state
 	// and booksReducer is the value of that data state
-	books: booksReducer;
+	books: BooksReducer
 
 });
 

@@ -10,7 +10,7 @@
 // good to keep in mind that each piece of the app should be named after the folder its in, to be concise
 
 // create the JS to hold the book data
-function booksReducer() {
+function BooksReducer() {
 	
 	// returns an array with our data
 	return [
@@ -18,9 +18,9 @@ function booksReducer() {
 		{ title: 'Javascript: The Good Parts' },
 		{ title: 'Harry Potter'},
 		{ title: 'Dark Tower'},
-		{ title: 'Eloquent Ruby'},
+		{ title: 'Eloquent Ruby'}
 	
-	]
-}
+	];
+};
 
-export default booksReducer;
+export default BooksReducer;
