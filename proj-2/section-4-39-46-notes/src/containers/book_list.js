@@ -13,6 +13,12 @@ import React, { Component } from 'react';
 // imports the connect function
 import { connect } from 'react-redux';
 
+// imports the function within react to bind action creators to components
+import { bindActionCreators } from 'redux';
+
+// imports action creators
+import selectBook from '../actions/index'
+
 
 // THESE CLASSES MUST HAVE A CAPITAL AT THE BEGINNING OR THE CLASS WILL NOT WORK
 class BookList extends Component {
@@ -25,8 +31,13 @@ class BookList extends Component {
 		return this.props.books.map((book) => {
 
 			// returns our book properties within an li
+			// on this.props.selectBook, it passes the value of the book that was clicked (or in other words the individual book object)
+			// to the selectBook action reducer
 			return (
-				<li key={book.title} className="list-group-items">
+				<li 
+				onClick={() => this.props.selectBook(book)}
+				key={book.title} 
+				className="list-group-item">
 					
 					{book.title}
 
@@ -62,14 +73,45 @@ function mapStateToProps(state) {
 
 	// this defines the state of this component
 	return {
-
-		books: state.books
+		// this is the KEY or what we want to call what is attached to this component's .props
+		books: 
+		// this is the actual DATA of the KEY books within reducers.js, which contains the JSON info
+		// within reducer_books.js
+		state.books
 
 	};
 
 };
 
+// creates the function to join the action creator with the BookList component, to update the app's state
+// anything returned on this function, will end up as .props on the BookList container
+function mapDispatchToProps(dispatch) {
+
+	// Whenever selectBook is called, the result should be passed to all of our reducers
+	// returns the react function, joining selectBook (the action Creator) to the key : selectBook
+	return bindActionCreators({ 
+
+		// this is the KEY the function selectBook is bound to
+		// thanks to this key, the property from the action creator gets passed on to this.book
+		selectBook: 
+
+		// this is the actual selectBook function
+		selectBook },
+
+		// this is the argument
+		// 
+		// this actually BINDS the arguments above (selectBook) to all our reducers. If this function is called, 
+		// its passed to all the reducers, changing their state if needed
+		dispatch)
+
+}
+
 // this connects the two functions in this container together when exported
 // connect takes a function, and a component (class only), and produces a container
 // a container is again a component that connects react with the redux state
-export default connect(mapStateToProps) (BookList);
+// 
+// binds the original reducer state change and action creators to the BookList component
+// 
+// essentially this promotes BookList from a component to a container - react needs to know 
+// about this new component selection method, selectBook.
+export default connect(mapStateToProps, mapDispatchToProps) (BookList);
