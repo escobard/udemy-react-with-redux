@@ -31,8 +31,13 @@ class BookList extends Component {
 		return this.props.books.map((book) => {
 
 			// returns our book properties within an li
+			// on this.props.selectBook, it passes the value of the book that was clicked (or in other words the individual book object)
+			// to the selectBook action reducer
 			return (
-				<li key={book.title} className="list-group-item">
+				<li 
+				onClick={() => this.props.selectBook(book)}
+				key={book.title} 
+				className="list-group-item">
 					
 					{book.title}
 
@@ -68,8 +73,11 @@ function mapStateToProps(state) {
 
 	// this defines the state of this component
 	return {
-
-		books: state.books
+		// this is the KEY or what we want to call what is attached to this component's .props
+		books: 
+		// this is the actual DATA of the KEY books within reducers.js, which contains the JSON info
+		// within reducer_books.js
+		state.books
 
 	};
 
