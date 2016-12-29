@@ -17,10 +17,13 @@ function selectBook(book){
 	return {
 
 		// defines the type of action
+		// TYPE key value is alway required by Redux
 		type: 'BOOK_SELECTED',
 
 		// defines the value of the action, or the payload
 		// in this case it would be a single book object from the books json
+		// this is an optional key value, not required by redux. anything else can be passed in an action along with the type.
+		// the PAYLOAD key is created for convinience, so we can pass its value to other components
 		payload: book
 	};
 };
