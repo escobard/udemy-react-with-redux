@@ -14,9 +14,29 @@ import { connect } from 'react-redux';
 
 class BookDetail extends Component {
 
+    // in short this returns the details of the activeBook
 	render(){
+
+		// since the state of our book is currently NULL, react throws an error which breaks the app because it expects
+		// the inital state to not be null. this happens because we have not yet selected a book to generate that state
+		// to fix this, we need to create a statement which catches the error, and does something instead if state=null
+		// this is one workaround
+		if (!this.props.book){
+			return (
+			
+				<div>Select a book to get started.</div>
+
+			);
+		}
+
 		return (
-		<div>Book Detail!</div>
+		<div>
+			<h3>
+			Details for: 
+			</h3>
+			<h4> Title: {this.props.book.title}</h4>
+			<span>Pages: {this.props.book.pages}</span>
+		</div>
 		);
 	}
 	
