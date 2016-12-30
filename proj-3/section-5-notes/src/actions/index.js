@@ -37,7 +37,10 @@ export function fetchWeather(city){
 	const url = `${ROOT_URL}&q=${city},us`;
 
 	// calls the ajax request with axios
+	// this returns a promise
 	const request = axios.get(url);
+
+	console.log('Request: ', request);
 
 	// to avoid the convulted overkill application of jQuery for this small app, we will be using another library to generate our
 	// AJAX request called axios
@@ -49,6 +52,7 @@ export function fetchWeather(city){
 		type: FETCH_WEATHER,
 		
 		// now that we have the DevOps figured out for the AJAX request, we can create the payload key value for this action
+		// the request PROMISE is attached to this action creator's payload
 		payload: request
 	};
 
