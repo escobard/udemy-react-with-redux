@@ -35,16 +35,28 @@ class SearchBar extends Component {
 		// to fix this, refer to the constructor notes 'bind' above
 		this.setState({ searchTerm: event.target.value})
 	}
+	
+	// need to add a function to PREVENT form submit on enter, causing issues within single-page apps
+	// 
+	// this is done with the onFormSubmit function 
+	// 
+	onFormSubmit(event) {
+		
+		// prevents default on the form submit (or when a user clicks submit / presses enter)
+		// this is the default HTML form behavior
+		event.preventDefault();
+
+	}
 
 	render(){
 
 		// this is going to be a controlled field
 		// controlled field is a form element where the value is set by the STATE of the component 
+		// 
+
 		return (
 		
-			<form className="input-group">
-				
-				
+			<form onSubmit={this.onFormSubmit}className="input-group">
 				<input 
 					placeholder="Get a five-day forecast in your favorite cities"
 					className="form-control"
