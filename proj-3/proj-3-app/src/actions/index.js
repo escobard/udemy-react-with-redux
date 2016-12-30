@@ -24,7 +24,11 @@ export const FETCH_WEATHER ='FETCH_WEATHER';
 
 // no need to create this in another file, as it's the main action of this application
 // also passing along an argument for the selected CITY
-function fetchWeather(city){
+// 
+// VERY important : WHEN EXPORTING MULTIPLE COMPONENTS, DO NOT SET A DEFAULT EXPORT, THIS CAUSES A BUG THAT DOES NOT ALLOW
+// ANYTHING TO BE EXPORTED
+// 
+export function fetchWeather(city){
 
 	// this grabs the ROOT_URL placed above, which has our API and the base URL needed for the request
 	// it then places the city argument (which will be the result of the search string) into the url const
@@ -38,14 +42,14 @@ function fetchWeather(city){
 	// to avoid the convulted overkill application of jQuery for this small app, we will be using another library to generate our
 	// AJAX request called axios
 	// this library is made solely for making ajax requests to the browser
+	// again, need to make sure that syntax is correct within EVERYTHING, otherwise it will cause bugs when exporting to another component
+	// was missing commas in the object properties below, caused this component to be unfetchable as a result
 	return {
 		
-		type: FETCH_WEATHER;
+		type: FETCH_WEATHER,
 		
 		// now that we have the DevOps figured out for the AJAX request, we can create the payload key value for this action
-		payload: request;
+		payload: request
 	};
 
 }
-
-export default fetchWeather;

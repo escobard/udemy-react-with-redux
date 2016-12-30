@@ -6,6 +6,15 @@
 
 import React, { Component } from 'react';
 
+// this is done to connect the action creator reducer with this component 
+import { connect } from 'react-redux';
+
+// this is to bind the action creator itself to this component
+import { bindActionCreators } from 'redux';
+
+// this is the actual action creator created in actions/index.js
+import { fetchWeather } from '../actions/index.js';
+
 class SearchBar extends Component {
 
 	// initiates the state of our component using the usual methods
@@ -21,6 +30,9 @@ class SearchBar extends Component {
 		// this. = the SearchBar class
 		// onInputChange = the function within the SearchBar class called onInputChange
 		// .bind(this) = binds the SearchBar class to the this. parameter within the onInputChange function as a result
+		// 
+		// same thing is done on onFormSubmit for the .this value
+		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	// interesting to remember, all event handlers create a standard event object, which contains the actual event action
@@ -46,6 +58,12 @@ class SearchBar extends Component {
 		// this is the default HTML form behavior
 		event.preventDefault();
 
+		// this now fetches the weather action creator accordingly
+		this.props.fetchWeather(this.state.searchTerm);
+
+		// then for user convinience (if the want to search the weather for something else) 
+		// we clear out the searchTerm string
+		this.setState({ searchTerm: ''});
 	}
 
 	render(){
@@ -56,7 +74,7 @@ class SearchBar extends Component {
 
 		return (
 		
-			<form onSubmit={this.onFormSubmit}className="input-group">
+			<form onSubmit={this.onFormSubmit} className="input-group">
 				<input 
 					placeholder="Get a five-day forecast in your favorite cities"
 					className="form-control"
@@ -78,5 +96,18 @@ class SearchBar extends Component {
 
 };
 
+// this binds the action creator fetch weather to our SearchBar component
+function mapDispatchToProps(dispatch){
 
-export default SearchBar;
+	return bindActionCreators({ fetchWeather }, dispatch);
+
+};
+
+// this connects the fetchWeather action creator to the SearchBar component, allowing it to be called within the SearchBar function
+// null is set as the first argument, because action creators MUST always be the second argument of the connect function
+// since in this case we do not have a reducer (because we are using middlewaare to fetch state data) the argument must be set as null
+// since there is no reducer attached to the fetchWeather action creator
+// 
+// to summarize, this gives us access to SearchBar.props.fetchWeather or within the SearchBar class, to this.props.fetchWeather
+// 
+export default connect(null, mapDispatchToProps)(SearchBar);
