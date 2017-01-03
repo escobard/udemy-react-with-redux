@@ -10,3 +10,8 @@ td, th {
 td svg {
     max-height: 175px;
 }
+
+td:first-of-type {
+	height: 175px;
+	width: 250px;
+}
