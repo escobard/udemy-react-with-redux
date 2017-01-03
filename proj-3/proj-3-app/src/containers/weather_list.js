@@ -19,19 +19,26 @@ class WeatherList extends Component {
 		// after mapping the correct data
 		// 
 		// this basically grabs the cityData.list object, then maps out every child array with a function
-		const temps = cityData.list.map(weatherInfo => 
+		const temps = cityData.list.map(weatherTemps => 
 			// this then grabs all the VALUES of the temp array, which contains the city's temperature for the next 5 days
-			weatherInfo.main.temp);
+			weatherTemps.main.temp);
 		console.log(temps);
 
+		// sets up the variable to map each pressure array and generate our chart 
+		const pressures = cityData.list.map(weatherPress => weatherPress.main.pressure);
+		console.log(pressures);
+
+		// sets up the variable to map each humidity array and generate our chart 
+		const humidities = cityData.list.map(weatherHumi => weatherHumi.main.humidity);
+		console.log(humidities);
 		return(
 
 			<tr key={cityName}>
 				
 				<td>{cityName}</td>
-				<td>
-					<Chart chartData={temps} color="orange" />
-				</td>
+				<td><Chart chartData={temps} color="orange" units="K"/></td>
+				<td><Chart chartData={pressures} color="red" units="hPa"/></td>
+				<td><Chart chartData={humidities} color="blue" units="%"/></td>
 				
 			</tr>
 
@@ -46,9 +53,9 @@ class WeatherList extends Component {
 				<thead>
 					<tr>
 						<th>City</th>
-						<th>Temperature</th>
-						<th>Pressure</th>
-						<th>Humidity</th>
+						<th>Temperature (K)</th>
+						<th>Pressure (hPa)</th>
+						<th>Humidity (%)</th>
 					</tr>
 				</thead>
 				
