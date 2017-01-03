@@ -8,6 +8,7 @@
 
 import React from 'react';
 
+// imports lodash command library, more on lodash here : https://github.com/lodash/lodash
 import _ from 'lodash';
 
 // imports the chart API for reat, Sparklines, more on that here : https://github.com/borisyankov/react-sparklines
