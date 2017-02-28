@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+// there is no need to use bindActionCreators using the dispatch shortcut for actions
+// all react applications using the long method should be refactored now
+// import {bindActionCreators} from 'redux';
+import fetchPosts from '../actions/index';
 
 class PostsIndex extends Component {
 	
@@ -14,7 +19,10 @@ class PostsIndex extends Component {
 	// this method is called by react only when the component is about to be called to the DOM for the first time
 	// it will NOT be called on subsequent re-renders
 	componentWillMount(){
-		console.log('this would be a good time to call an action creator to fetch posts');
+		// console.log('this would be a good time to call an action creator to fetch posts');
+		// now that we have our action creators synced to our component, we can call it within the lifecycle method to fetch the
+		// posts as soon as this component is loaded
+		this.props.fetchPosts();
 	}
 	render(){
 		return (
@@ -25,5 +33,15 @@ class PostsIndex extends Component {
 	}
 
 }
+/* this is the standard way to call an action into the props of a component
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({fetchPosts}, dispatch);
+} 
 
-export default PostsIndex;
+export default connect(null, mapDispatchToProps)(PostsIndex);*/
+
+/* this is another way of dispatching actions into the component props, without the need to call the mapDispatchToProps boilerplate
+export default connect(null, {fetchPosts: fetchPosts})(PostsIndex); */
+
+// shortened even further with ES6 and webpack:
+export default connect(null, {fetchPosts})(PostsIndex);
