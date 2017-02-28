@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 // import {bindActionCreators} from 'redux';
 import fetchPosts from '../actions/index';
 
+// this adds the link component from react-router
+import {Link} from 'react-router';
+
 class PostsIndex extends Component {
 	
 	// this is called a lifecycle method
@@ -26,9 +29,12 @@ class PostsIndex extends Component {
 	}
 	render(){
 		return (
-
+			<div>
+			<div className="text-xs-right">
+				<Link to="/posts/new" className="btn btn-primary">Add a Post</Link>
+			</div>
 			<div>List of blog posts</div>
-
+			</div>
 		);
 	}
 
