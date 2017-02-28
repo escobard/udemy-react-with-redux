@@ -7,7 +7,7 @@ import {Route, IndexRoute} from 'react-router';
 import App from './components/app';
 
 import PostsIndex from './components/posts_index';
-
+import PostsNew from './components/posts_new';
 // imports the posts component
 
 // the following code sets up the route path for an indvidual component
@@ -45,5 +45,6 @@ export default (
 export default (
 <Route path="/" component={App}>
 	<IndexRoute component={PostsIndex} />
+	<Route path='posts/new' component={PostsNew}/>
 </Route>
 );
