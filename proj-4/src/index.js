@@ -11,11 +11,14 @@ import { createStore, applyMiddleware } from 'redux';
 import {Router, browserHistory} from 'react-router';
 import reducers from './reducers';
 
+// this imports the routes, to use within indexjs
+import routes from './routes';
+
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 // Router re-renders the app, and changes the content based on the history of the application
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory} />
+    <Router history={browserHistory} routes={routes}/>
   </Provider>
   , document.querySelector('.container'));
