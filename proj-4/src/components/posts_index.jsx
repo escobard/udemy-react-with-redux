@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 // there is no need to use bindActionCreators using the dispatch shortcut for actions
 // all react applications using the long method should be refactored now
 // import {bindActionCreators} from 'redux';
-import fetchPosts from '../actions/index';
+import {fetchPosts} from '../actions/index';
 
 // this adds the link component from react-router
 import {Link} from 'react-router';
