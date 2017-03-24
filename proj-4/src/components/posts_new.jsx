@@ -17,9 +17,10 @@ class PostsNew extends Component {
 		// the below is shortened from :
 		// const title = this.props.fields.title.
 		const {fields:{title, categories, content}, handleSubmit} = this.props;
+
 		return (
 
-			<form onSubmit={handleSubmit(this.props.createPost)}>
+			<form onSubmit={handleSubmit}>
 				<h3>Create a new post</h3>
 				<div className="form-group">
 					<label htmlFor="">Title</label>
@@ -50,7 +51,8 @@ export default reduxForm({
 	form: 'PostsNewForm',
 
 // this declares the fields that the form is going to contain
-	fields: ['title', 'categories', 'content']
+	fields: ['title', 'categories', 'content'],
+	onSubmit: () => {this.props.createPost}
 
 }, null, {createPost})(PostsNew);
 
