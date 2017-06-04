@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-class PostsIndex extends Component {
+export default class PostsIndex extends Component {
 	render(){
 		return(
-			<div></div>
+			<div>Posts Index</div>
 
 		);
 	}
