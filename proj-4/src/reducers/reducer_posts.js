@@ -30,6 +30,6 @@ export default function(state = {}, action){
       console.log(action.payload.data);
       return _.mapKeys(action.payload.data, 'id');
 		default: 
-			return: state;
+			return state;
 	}
 }

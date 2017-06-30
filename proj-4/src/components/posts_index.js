@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts} from '../actions';
 
-export default class PostsIndex extends Component {
+class PostsIndex extends Component {
 	componentDidMount(){
 		this.props.fetchPosts();
 	}
@@ -14,6 +14,8 @@ export default class PostsIndex extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return {posts: state.posts};
+}
 
-
-export default connect(null, {fetchPosts})(PostsIndex);
+export default connect(mapStateToProps, {fetchPosts})(PostsIndex);
